@@ -1,11 +1,11 @@
 import './App.css';
-import Header from './Header';
-import Input from './Input';
+import Header from './components/Header';
+import Input from './components/InputField';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Header title='Hello World' color='red'/>
+      <Header title='Hello World' color='white'/>
       <Input />
     </div>
   );
