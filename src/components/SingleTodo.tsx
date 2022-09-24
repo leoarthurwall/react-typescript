@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { Todo } from "../model";
 import {
   AiFillEdit,
@@ -15,6 +15,8 @@ type Props = {
 };
 
 const SingleTodo = ({ todo, todos, setTodos }: Props) => {
+  const [edit, setEdit] = useState<boolean>(false);
+  const [editTodo, setEditTodo] = useState<string>(todo.todo);
   //MARK AS DONE - maps through todo array sets isDone state to opposite.
   const handleDone = (id: number) => {
     setTodos(
@@ -38,7 +40,15 @@ const SingleTodo = ({ todo, todos, setTodos }: Props) => {
       )}
 
       <div>
-        <span className="icon">
+        <span
+          className="icon"
+          onClick={() => {
+            if (!edit && !todo.isDone) {
+              //if edit mode is not on & todo is not done
+              setEdit(!edit); //edit is actionable
+            }
+          }}
+        >
           <AiFillEdit />
         </span>
         <span className="icon">
