@@ -43,4 +43,5 @@ npm start
 - the 's' tag to put a line through text
 - seperating components into files
 - props & prop drilling
+- media queries - responsive design
 
