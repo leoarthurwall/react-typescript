@@ -31,9 +31,24 @@ const SingleTodo = ({ todo, todos, setTodos }: Props) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  //EDIT - maps through todos array. if todo id matches id, then todo is set to editTodo. 
+  const handleEdit = (e: React.FormEvent, id: number) => {
+    e.preventDefault();
+
+    setTodos(
+      todos.map((todo) => (todo.id === id ? { ...todo, todo: editTodo } : todo))
+    );
+    setEdit(false);
+  };
   return (
-    <form className="todos-single">
-      {todo.isDone ? (
+    <form className="todos-single" onSubmit={(e) => handleEdit(e, todo.id)}>
+      {edit ? (
+        <input
+          value={editTodo}
+          onChange={(e) => setEditTodo(e.target.value)}
+          className="todos-single-text"
+        />
+      ) : todo.isDone ? (
         <s className="todos-single-text">{todo.todo}</s>
       ) : (
         <span className="todos-single-text">{todo.todo}</span>
