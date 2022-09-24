@@ -23,7 +23,7 @@ const App: React.FC = () => {
   console.log(todos)
   return (
     <div className="App">
-      <Header title="Type tasker" color="white" />
+      <Header title="Typescript Task maker" color="white" />
       <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
       <TodoList todos={todos} setTodos={setTodos}/>
     </div>
