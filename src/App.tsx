@@ -10,10 +10,20 @@ const App: React.FC = () => {
 
   console.log(todo);
 
+  const handleAdd = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (todo) {
+      setTodos([...todos, { id: Date.now(), todo: todo, isDone: false }]);
+      setTodo("");
+    }
+  };
+
+  console.log(todos)
   return (
     <div className="App">
       <Header title="Hello World" color="white" />
-      <InputField todo={todo} setTodo={setTodo} />
+      <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
     </div>
   );
 };
