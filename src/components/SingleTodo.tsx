@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Todo } from "../model";
 import {
   AiFillEdit,
@@ -31,7 +31,7 @@ const SingleTodo = ({ todo, todos, setTodos }: Props) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
-  //EDIT - maps through todos array. if todo id matches id, then todo is set to editTodo. 
+  //EDIT - maps through todos array. if todo id matches id, then todo is set to editTodo.
   const handleEdit = (e: React.FormEvent, id: number) => {
     e.preventDefault();
 
@@ -40,10 +40,21 @@ const SingleTodo = ({ todo, todos, setTodos }: Props) => {
     );
     setEdit(false);
   };
+
+  //EDIT INPUT FOCUS - when clicking the edit button, the focus automatically goes to the input field upon edit state change. NOTE - this is an alternative to the autoFocus property 
+  const editInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    editInputRef.current?.focus();
+  }, [edit]);
+
+
   return (
     <form className="todos-single" onSubmit={(e) => handleEdit(e, todo.id)}>
       {edit ? (
         <input
+          ref={editInputRef}
+        //   autoFocus
           value={editTodo}
           onChange={(e) => setEditTodo(e.target.value)}
           className="todos-single-text"
