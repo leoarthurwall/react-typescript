@@ -1,7 +1,6 @@
 import React from "react";
 import { Todo } from "../model";
-import { AiFillEdit, AiFillDelete, AiOutlineClose } from "react-icons/ai";
-import { MdDone } from "react-icons/md";
+import { AiFillEdit, AiFillDelete, AiFillCheckCircle, AiOutlineCheckCircle } from "react-icons/ai";
 import "./styles.css";
 
 type Props = {
@@ -36,9 +35,9 @@ const SingleTodo = ({ todo, todos, setTodos }: Props) => {
           <AiFillDelete />
         </span>
         {todo.isDone ? (<span className="icon">
-          <AiOutlineClose onClick={() => handleDone(todo.id)} />
+          <AiFillCheckCircle onClick={() => handleDone(todo.id)} />
         </span>) : (<span className="icon">
-          <MdDone onClick={() => handleDone(todo.id)} />
+          <AiOutlineCheckCircle onClick={() => handleDone(todo.id)} />
         </span>)}
         
         
