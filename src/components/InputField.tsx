@@ -25,6 +25,7 @@ const InputField: React.FC<Props> = ({ todo, setTodo, handleAdd }) => {
         placeholder="add a task..."
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
+        autoFocus
       />
       <button className="input-submit" type="submit">
         Add
