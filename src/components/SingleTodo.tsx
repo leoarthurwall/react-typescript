@@ -1,6 +1,11 @@
 import React from "react";
 import { Todo } from "../model";
-import { AiFillEdit, AiFillDelete, AiFillCheckCircle, AiOutlineCheckCircle } from "react-icons/ai";
+import {
+  AiFillEdit,
+  AiFillDelete,
+  AiFillCheckCircle,
+  AiOutlineCheckCircle,
+} from "react-icons/ai";
 import "./styles.css";
 
 type Props = {
@@ -19,6 +24,11 @@ const SingleTodo = ({ todo, todos, setTodos }: Props) => {
     );
   };
 
+  //DELETE - filters through the todos array and returns all of the ids that don't match the selected id
+  const handleDelete = (id: number) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <form className="todos-single">
       {todo.isDone ? (
@@ -32,15 +42,17 @@ const SingleTodo = ({ todo, todos, setTodos }: Props) => {
           <AiFillEdit />
         </span>
         <span className="icon">
-          <AiFillDelete />
+          <AiFillDelete onClick={() => handleDelete(todo.id)} />
         </span>
-        {todo.isDone ? (<span className="icon">
-          <AiFillCheckCircle onClick={() => handleDone(todo.id)} />
-        </span>) : (<span className="icon">
-          <AiOutlineCheckCircle onClick={() => handleDone(todo.id)} />
-        </span>)}
-        
-        
+        {todo.isDone ? (
+          <span className="icon">
+            <AiFillCheckCircle onClick={() => handleDone(todo.id)} />
+          </span>
+        ) : (
+          <span className="icon">
+            <AiOutlineCheckCircle onClick={() => handleDone(todo.id)} />
+          </span>
+        )}
       </div>
     </form>
   );
